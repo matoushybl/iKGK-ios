@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Classy
+import Realm
+import SnapKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +18,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        #if (arch(i386) || arch(x86_64)) && os(iOS)
+            let absoluteFilePath = _CASAbsoluteFilePath(__FILE__, "stylesheet.cas")
+            CASStyler.defaultStyler().watchFilePath = absoluteFilePath
+            
+            let realmTestingPath = _CASAbsoluteFilePath(__FILE__, "../../realm-db/testing.realm")
+            RLMRealm.setDefaultRealmPath(realmTestingPath)
+        #endif
+        
+        let navigationController = UINavigationController(rootViewController: LoadingController())
+        navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
         // Override point for customization after application launch.
+        window!.backgroundColor = UIColor.whiteColor()
+        window!.makeKeyAndVisible()
+        window!.rootViewController = navigationController
+        window!.tintColor = UIColor(red: 0.573, green: 0.573, blue: 0.573, alpha: 1)
+        application.statusBarStyle = UIStatusBarStyle.LightContent
         return true
     }
 

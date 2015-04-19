@@ -1,0 +1,32 @@
+$mainColor = #EF6C00
+
+UINavigationBar {
+    barTintColor: $mainColor;
+    tintColor: white;
+    translucent: false;
+
+    titleTextAtributes: @{
+        font: HelveticaNeue-Bold 17;
+        foregroundColor: white;
+    }
+}
+
+MainButton {
+    backgroundColor: #F1F1F1;
+
+    > UIView {
+        backgroundColor: #D1D1D1;
+    }
+}
+
+MainController > UIView {
+    backgroundColor: white;
+}
+
+LoadingController > UIView {
+    backgroundColor: $mainColor;
+    > UILabel {
+        textColor: white;
+        font: 15;
+    }
+}
