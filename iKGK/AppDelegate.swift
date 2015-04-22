@@ -22,11 +22,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let absoluteFilePath = _CASAbsoluteFilePath(__FILE__, "stylesheet.cas")
             CASStyler.defaultStyler().watchFilePath = absoluteFilePath
             
-            let realmTestingPath = _CASAbsoluteFilePath(__FILE__, "../../realm-db/testing.realm")
+            let realmTestingPath = _CASAbsoluteFilePath(__FILE__, "../realm-db/testing.realm")
             RLMRealm.setDefaultRealmPath(realmTestingPath)
         #endif
         
-        let navigationController = UINavigationController(rootViewController: LoadingController())
+        var rootController: UIViewController = MainController()
+        if(Preferences.id == 0) {
+            rootController = LoadingController()
+        }
+        
+        let navigationController = UINavigationController(rootViewController: rootController)
         navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)

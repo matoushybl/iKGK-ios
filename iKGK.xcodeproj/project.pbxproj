@@ -19,6 +19,12 @@
 		223A8BAA1AE2B9790045701B /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223A8BA91AE2B9790045701B /* WebViewController.swift */; };
 		223A8BAC1AE3BFD90045701B /* UrlProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223A8BAB1AE3BFD90045701B /* UrlProvider.swift */; };
 		22D02C701AE410B00051E008 /* LoadingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D02C6F1AE410B00051E008 /* LoadingController.swift */; };
+		22D02C721AE4195C0051E008 /* ClassModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D02C711AE4195C0051E008 /* ClassModel.swift */; };
+		22D02C741AE41DBF0051E008 /* RLMSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D02C731AE41DBF0051E008 /* RLMSupport.swift */; };
+		22D02C771AE4239D0051E008 /* TeacherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D02C761AE4239D0051E008 /* TeacherModel.swift */; };
+		22D02C791AE42F560051E008 /* ChoosingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D02C781AE42F560051E008 /* ChoosingController.swift */; };
+		22D02C7B1AE558E70051E008 /* ChooserTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D02C7A1AE558E70051E008 /* ChooserTableCell.swift */; };
+		22D02C7D1AE577530051E008 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D02C7C1AE577530051E008 /* Preferences.swift */; };
 		9DCD2BDE8CCE6552DEC7F616 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9975710D366AD9E5141715AB /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -49,6 +55,12 @@
 		223A8BA91AE2B9790045701B /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		223A8BAB1AE3BFD90045701B /* UrlProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlProvider.swift; sourceTree = "<group>"; };
 		22D02C6F1AE410B00051E008 /* LoadingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingController.swift; sourceTree = "<group>"; };
+		22D02C711AE4195C0051E008 /* ClassModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassModel.swift; sourceTree = "<group>"; };
+		22D02C731AE41DBF0051E008 /* RLMSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMSupport.swift; sourceTree = "<group>"; };
+		22D02C761AE4239D0051E008 /* TeacherModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherModel.swift; sourceTree = "<group>"; };
+		22D02C781AE42F560051E008 /* ChoosingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoosingController.swift; sourceTree = "<group>"; };
+		22D02C7A1AE558E70051E008 /* ChooserTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooserTableCell.swift; sourceTree = "<group>"; };
+		22D02C7C1AE577530051E008 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		464B33C1DC3EA4FE4A05B0F6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		6BF06065058C9F6ADE2968A8 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		9975710D366AD9E5141715AB /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +116,7 @@
 				223A8BA11AE17A870045701B /* Controller */,
 				223A8BA41AE190E80045701B /* View */,
 				223A8BAE1AE3C1DE0045701B /* Utility */,
+				22D02C751AE422C90051E008 /* Model */,
 			);
 			path = iKGK;
 			sourceTree = "<group>";
@@ -140,6 +153,7 @@
 				223A8B9F1AE17A380045701B /* MainController.swift */,
 				223A8BA91AE2B9790045701B /* WebViewController.swift */,
 				22D02C6F1AE410B00051E008 /* LoadingController.swift */,
+				22D02C781AE42F560051E008 /* ChoosingController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -149,6 +163,7 @@
 			children = (
 				223A8BA51AE1912B0045701B /* CompositeView.swift */,
 				223A8BA21AE190670045701B /* MainButton.swift */,
+				22D02C7A1AE558E70051E008 /* ChooserTableCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -156,9 +171,20 @@
 		223A8BAE1AE3C1DE0045701B /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				22D02C731AE41DBF0051E008 /* RLMSupport.swift */,
 				223A8BAB1AE3BFD90045701B /* UrlProvider.swift */,
+				22D02C7C1AE577530051E008 /* Preferences.swift */,
 			);
 			name = Utility;
+			sourceTree = "<group>";
+		};
+		22D02C751AE422C90051E008 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				22D02C711AE4195C0051E008 /* ClassModel.swift */,
+				22D02C761AE4239D0051E008 /* TeacherModel.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		4CA9785AD9A0E9A2F96D8BAD /* Frameworks */ = {
@@ -330,10 +356,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22D02C7B1AE558E70051E008 /* ChooserTableCell.swift in Sources */,
+				22D02C791AE42F560051E008 /* ChoosingController.swift in Sources */,
+				22D02C771AE4239D0051E008 /* TeacherModel.swift in Sources */,
 				223A8BAC1AE3BFD90045701B /* UrlProvider.swift in Sources */,
+				22D02C741AE41DBF0051E008 /* RLMSupport.swift in Sources */,
 				22D02C701AE410B00051E008 /* LoadingController.swift in Sources */,
+				22D02C721AE4195C0051E008 /* ClassModel.swift in Sources */,
 				223A8BA61AE1912B0045701B /* CompositeView.swift in Sources */,
 				223A8BA01AE17A380045701B /* MainController.swift in Sources */,
+				22D02C7D1AE577530051E008 /* Preferences.swift in Sources */,
 				223A8B7E1AE1773B0045701B /* AppDelegate.swift in Sources */,
 				223A8BAA1AE2B9790045701B /* WebViewController.swift in Sources */,
 				223A8BA31AE190670045701B /* MainButton.swift in Sources */,

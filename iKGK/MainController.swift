@@ -31,6 +31,7 @@ class MainController: UIViewController {
         websiteButton = CompositeView<MainButton>.addInto(view)
         
         navigationItem.title = "iKGK"
+        navigationItem.hidesBackButton = true
         setupViews()
     }
     

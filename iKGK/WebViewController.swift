@@ -23,6 +23,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         webView = CompositeView<UWAWebView>.addInto(view)
         activityIndicator = CompositeView<UIActivityIndicatorView>.addInto(view)
         activityIndicator.activityIndicatorViewStyle = .Gray
+        activityIndicator.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8)
         
         webView.scalesPageToFit = true
         webView.delegate = self

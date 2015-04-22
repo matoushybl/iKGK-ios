@@ -8,9 +8,17 @@
 
 import UIKit
 import AFNetworking
+import Realm
+import SwiftyJSON
 
 @objc(LoadingController)
 class LoadingController: UIViewController {
+    
+    let CLASSES_URL = "http://matoushybl.github.io/KGK-biology/classes.json"
+    let TEACHERS_URL = "http://matoushybl.github.io/KGK-biology/teachers.json"
+    
+    let realm = RLMRealm.defaultRealm()
+    let networkManager = AFHTTPRequestOperationManager()
     
     var activityIndicator: UIActivityIndicatorView!
     var label: UILabel!
@@ -37,14 +45,66 @@ class LoadingController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         if(!isNetworkAvailable()) {
-            UIAlertView(title: "Error", message: "Internet connection not available", delegate: nil, cancelButtonTitle: "Cancel").show()
+            showError("Network not available")
         }
         activityIndicator.startAnimating()
-        // FIXME load classes etc.
+        loadClasses()
     }
     
     // FIXME let's hope this shit works
     func isNetworkAvailable() -> Bool {
         return AFNetworkReachabilityManager.sharedManager().reachable
+    }
+    
+    // FIXME move these methods to separate class so that they are usable everywhere
+    func loadClasses() {
+        networkManager.GET(CLASSES_URL, parameters: nil, success: { operation, object in
+            let json = JSON(object)
+            var data = [ClassModel]()
+            let classes = json["classes"]
+            for(_, aClass) in classes {
+                let classModel = ClassModel()
+                classModel.id = aClass["id"].intValue
+                classModel.name = aClass["name"].stringValue
+                
+                data.append(classModel)
+            }
+            self.realm.transactionWithBlock() {
+                self.realm.deleteObjects(ClassModel.allObjects())
+                self.realm.addObjects(data)
+            }
+            self.loadTeachers()
+            
+        }) { operation, error in
+            self.showError("Failed to load data, please try again later")
+        }
+    }
+    
+    func loadTeachers() {
+        networkManager.GET(TEACHERS_URL, parameters: nil, success: { operation, object in
+        let json = JSON(object)
+        var data = [TeacherModel]()
+        let classes = json["teachers"]
+        for(_, aClass) in classes {
+            let teacherModel = TeacherModel()
+            teacherModel.id = aClass["id"].intValue
+            teacherModel.name = aClass["name"].stringValue
+            
+            data.append(teacherModel)
+        }
+        self.realm.transactionWithBlock() {
+            self.realm.deleteObjects(TeacherModel.allObjects())
+            self.realm.addObjects(data)
+        }
+            // use navigation controller since here
+            self.navigationController?.pushViewController(ChoosingController(), animated: true)
+        
+        }) { operation, error in
+            self.showError("Failed to load data, please try again later")
+        }
+    }
+    
+    func showError(message: String) {
+        UIAlertView(title: "Error", message: message, delegate: nil, cancelButtonTitle: "Cancel").show()
     }
 }
