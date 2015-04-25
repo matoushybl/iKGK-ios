@@ -12,7 +12,7 @@ UINavigationBar {
 }
 
 MainButton {
-    backgroundColor: #F1F1F1;
+    backgroundColor: white;
 
     > UIView {
         backgroundColor: #D1D1D1;

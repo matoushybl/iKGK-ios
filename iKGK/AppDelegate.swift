@@ -29,16 +29,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var rootController: UIViewController = MainController()
         if(Preferences.id == 0) {
             rootController = LoadingController()
+        } else {
+            let navigationController = UINavigationController(rootViewController: rootController)
+            navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+            rootController = navigationController
         }
-        
-        let navigationController = UINavigationController(rootViewController: rootController)
-        navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         // Override point for customization after application launch.
         window!.backgroundColor = UIColor.whiteColor()
         window!.makeKeyAndVisible()
-        window!.rootViewController = navigationController
+        window!.rootViewController = rootController
         window!.tintColor = UIColor(red: 0.573, green: 0.573, blue: 0.573, alpha: 1)
         application.statusBarStyle = UIStatusBarStyle.LightContent
         return true

@@ -18,6 +18,7 @@
 		223A8BA81AE195460045701B /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 223A8BA71AE195460045701B /* Podfile */; };
 		223A8BAA1AE2B9790045701B /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223A8BA91AE2B9790045701B /* WebViewController.swift */; };
 		223A8BAC1AE3BFD90045701B /* UrlProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223A8BAB1AE3BFD90045701B /* UrlProvider.swift */; };
+		22BA15921AEC349C00632E90 /* DataDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA15911AEC349C00632E90 /* DataDownloader.swift */; };
 		22D02C701AE410B00051E008 /* LoadingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D02C6F1AE410B00051E008 /* LoadingController.swift */; };
 		22D02C721AE4195C0051E008 /* ClassModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D02C711AE4195C0051E008 /* ClassModel.swift */; };
 		22D02C741AE41DBF0051E008 /* RLMSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D02C731AE41DBF0051E008 /* RLMSupport.swift */; };
@@ -54,6 +55,7 @@
 		223A8BA71AE195460045701B /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		223A8BA91AE2B9790045701B /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		223A8BAB1AE3BFD90045701B /* UrlProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlProvider.swift; sourceTree = "<group>"; };
+		22BA15911AEC349C00632E90 /* DataDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataDownloader.swift; sourceTree = "<group>"; };
 		22D02C6F1AE410B00051E008 /* LoadingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingController.swift; sourceTree = "<group>"; };
 		22D02C711AE4195C0051E008 /* ClassModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassModel.swift; sourceTree = "<group>"; };
 		22D02C731AE41DBF0051E008 /* RLMSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMSupport.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				22D02C731AE41DBF0051E008 /* RLMSupport.swift */,
 				223A8BAB1AE3BFD90045701B /* UrlProvider.swift */,
 				22D02C7C1AE577530051E008 /* Preferences.swift */,
+				22BA15911AEC349C00632E90 /* DataDownloader.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				223A8BAC1AE3BFD90045701B /* UrlProvider.swift in Sources */,
 				22D02C741AE41DBF0051E008 /* RLMSupport.swift in Sources */,
 				22D02C701AE410B00051E008 /* LoadingController.swift in Sources */,
+				22BA15921AEC349C00632E90 /* DataDownloader.swift in Sources */,
 				22D02C721AE4195C0051E008 /* ClassModel.swift in Sources */,
 				223A8BA61AE1912B0045701B /* CompositeView.swift in Sources */,
 				223A8BA01AE17A380045701B /* MainController.swift in Sources */,

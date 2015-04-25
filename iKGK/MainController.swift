@@ -33,6 +33,7 @@ class MainController: UIViewController {
         navigationItem.title = "iKGK"
         navigationItem.hidesBackButton = true
         setupViews()
+        DataDownloader.loadData(nil, onError: nil)
     }
     
     func setupViews() {
@@ -46,7 +47,7 @@ class MainController: UIViewController {
         }
         timetableButton.title = "Timetable"
         timetableButton.onClick = {
-            self.openController("", title: "Timetable")
+            self.openController(UrlProvider.getTimetableUrl(), title: "Timetable")
         }
         moodleButton.title = "Moodle"
         moodleButton.onClick = {
@@ -67,7 +68,7 @@ class MainController: UIViewController {
     func addConstraints() {
         marksButton.snp_remakeConstraints { make in
             make.leading.trailing.equalTo(self.view)
-            make.top.equalTo(self.view).offset(10)
+            make.top.equalTo(self.view)
             make.height.equalTo(40)
         }
         substitutionButton.snp_remakeConstraints { make in
