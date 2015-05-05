@@ -33,10 +33,10 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     
     func addViewConstraints() {
         webView.snp_remakeConstraints { make in
-            make.edges.equalTo(self.view)
+            make.edges.equalTo(view)
         }
         activityIndicator.snp_remakeConstraints { make in
-            make.edges.equalTo(self.view)
+            make.edges.equalTo(view)
         }
     }
     
@@ -51,6 +51,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
         activityIndicator.stopAnimating()
-        // FIXME show an errors
+        let alertController = UIAlertController(title: "Error", message: "Failed to load page.", preferredStyle: UIAlertControllerStyle.Alert)
+        presentViewController(alertController, animated: true, completion: nil)
     }
 }

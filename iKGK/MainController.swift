@@ -43,7 +43,7 @@ class MainController: UIViewController {
         }
         substitutionButton.title = "Substitution"
         substitutionButton.onClick = {
-            self.openController("", title: "Substitution")
+            self.openController(UrlProvider.getSubstitutionUrl(), title: "Substitution")
         }
         timetableButton.title = "Timetable"
         timetableButton.onClick = {
