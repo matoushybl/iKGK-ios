@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class WebViewController: UIViewController  {
+class WebViewController: UIViewController, WKNavigationDelegate {
     
     var webView: WKWebView!
     var activityIndicator: UIActivityIndicatorView!
@@ -21,6 +21,7 @@ class WebViewController: UIViewController  {
         view = UIView()
         
         webView = CompositeView<WKWebView>.addInto(view)
+        webView.navigationDelegate = self
         activityIndicator = CompositeView<UIActivityIndicatorView>.addInto(view)
         activityIndicator.activityIndicatorViewStyle = .Gray
         activityIndicator.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8)
@@ -55,5 +56,30 @@ class WebViewController: UIViewController  {
     
     func loadUrl(url: String) {
         webView.loadRequest(NSURLRequest(URL: NSURL(string: url)!))
+    }
+    
+    func webView(webView: WKWebView, didReceiveAuthenticationChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) {
+        let host: String = webView.URL!.host!
+        let authMethod = challenge.protectionSpace.authenticationMethod
+        if(authMethod == NSURLAuthenticationMethodDefault || authMethod == NSURLAuthenticationMethodHTTPBasic || authMethod == NSURLAuthenticationMethodHTTPDigest) {
+            let alertController = UIAlertController(title: "Authentification requiered", message: "Please input your credentials", preferredStyle: .Alert)
+            alertController.addTextFieldWithConfigurationHandler { textField in
+                textField.placeholder = "Username"
+            }
+            alertController.addTextFieldWithConfigurationHandler { textField in
+                textField.placeholder = "Password"
+                textField.secureTextEntry = true
+            }
+            alertController.addAction(UIAlertAction(title: "OK", style: .Default) { handler in
+                let credential = NSURLCredential(user: (alertController.textFields?[0] as! UITextField).text, password: (alertController.textFields?[1] as! UITextField).text, persistence: .Permanent)
+                completionHandler(.UseCredential, credential)
+            })
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel) { handler in
+                completionHandler(.CancelAuthenticationChallenge, nil)
+            })
+            presentViewController(alertController, animated: true, completion: nil)
+        } else {
+            completionHandler(.CancelAuthenticationChallenge, nil)
+        }
     }
 }

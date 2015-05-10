@@ -56,7 +56,8 @@ class MainController: UIViewController {
         canteenButton.title = "Canteen"
         canteenButton.onClick = {
             // FIXME not a good way
-            UIApplication.sharedApplication().openURL(NSURL(string: UrlProvider.CANTEEN)!)
+            //UIApplication.sharedApplication().openURL(NSURL(string: UrlProvider.CANTEEN)!)
+            self.openController(WebViewController(), url: UrlProvider.CANTEEN, title: "Canteen")
         }
         websiteButton.title = "Website"
         websiteButton.onClick = {
