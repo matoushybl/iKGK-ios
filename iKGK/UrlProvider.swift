@@ -49,14 +49,30 @@ class UrlProvider {
     
     class func shouldDisplayNextSubstitution() -> Bool {
         let now = moment()
-        if(now.weekday >= 5 || now.weekday == 1 || now.hour > 16) {
+        if((now.weekday > 5 || now.weekday == 1) || now.hour >= 16) {
             return true
         }
         return false
     }
     
+    class func getNextDaySubstitutionUrl() -> String {
+        var baseUrl = String(format: SUBSTITUTION_TOMORROW_URL, Preferences.id, getNextSubstitutionDateString())
+        if(Preferences.teacherMode) {
+            baseUrl = String(format: TEACHER_SUBSTITUTION_TOMORROW_URL, Preferences.id, getNextSubstitutionDateString())
+        }
+        return baseUrl
+    }
+    
     class func getNextSubstitutionDateString() -> String {
         let tomorrow = moment().add(1, TimeUnit.Days)
         return tomorrow.format(dateFormat: "yyyy-MM-d")
+    }
+    
+    class func getTimetableUrlForId(id: Int, teacher: Bool) -> String {
+        var url = TIMETABLE
+        if(teacher) {
+            url = TEACHER_TIMETABLE
+        }
+        return String(format: url, id)
     }
 }

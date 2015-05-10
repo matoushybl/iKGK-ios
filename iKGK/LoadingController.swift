@@ -43,9 +43,19 @@ class LoadingController: UIViewController {
         }
         activityIndicator.startAnimating()
         DataDownloader.loadData({
-            let navigationController = UINavigationController(rootViewController: ChoosingController())
-            navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-            self.presentViewController(navigationController, animated: true, completion: nil)
+            let choosingController = ChoosingController()
+            choosingController.onClassSelected = { model in
+                Preferences.teacherMode = false
+                Preferences.id = model.id
+                self.showMainController()
+            
+            }
+            choosingController.onTeacherSelected = { model in
+                Preferences.teacherMode = true
+                Preferences.id = model.id
+                self.showMainController()
+            }
+            
             }, onError: {
             self.showError("Failed to load data, please try again later")
         })
@@ -58,5 +68,11 @@ class LoadingController: UIViewController {
     
     func showError(message: String) {
         UIAlertView(title: "Error", message: message, delegate: nil, cancelButtonTitle: "Cancel").show()
+    }
+    
+    func showMainController() {
+        let navigationController = UINavigationController(rootViewController: MainController())
+        navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.presentViewController(navigationController, animated: true, completion: nil)
     }
 }

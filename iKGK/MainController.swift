@@ -39,19 +39,19 @@ class MainController: UIViewController {
     func setupViews() {
         marksButton.title = "Marks"
         marksButton.onClick = {
-            self.openController(UrlProvider.MARKS, title: "Marks")
+            self.openController(WebViewController(), url: UrlProvider.MARKS, title: "Marks")
         }
         substitutionButton.title = "Substitution"
         substitutionButton.onClick = {
-            self.openController(UrlProvider.getSubstitutionUrl(), title: "Substitution")
+            self.openController(SubstitutionController(), url: UrlProvider.getSubstitutionUrl(), title: "Substitution")
         }
         timetableButton.title = "Timetable"
         timetableButton.onClick = {
-            self.openController(UrlProvider.getTimetableUrl(), title: "Timetable")
+            self.openController(TimetableController(), url: UrlProvider.getTimetableUrl(), title: "Timetable")
         }
         moodleButton.title = "Moodle"
         moodleButton.onClick = {
-            self.openController(UrlProvider.MOODLE, title: "Moodle")
+            self.openController(WebViewController(), url: UrlProvider.MOODLE, title: "Moodle")
         }
         canteenButton.title = "Canteen"
         canteenButton.onClick = {
@@ -60,7 +60,7 @@ class MainController: UIViewController {
         }
         websiteButton.title = "Website"
         websiteButton.onClick = {
-            self.openController(UrlProvider.WEBSITE, title: "Website")
+            self.openController(WebViewController(), url: UrlProvider.WEBSITE, title: "Website")
         }
         addConstraints()
     }
@@ -98,8 +98,7 @@ class MainController: UIViewController {
         }
     }
     
-    func openController(url: String, title: String) {
-        let controller = WebViewController()
+    func openController(controller: WebViewController, url: String, title: String) {
         controller.navigationItem.title = title
         controller.url = url
         navigationController?.pushViewController(controller, animated: true)

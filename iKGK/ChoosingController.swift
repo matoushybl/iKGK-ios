@@ -18,6 +18,9 @@ class ChoosingController: UITableViewController, UITableViewDataSource, UITableV
     var classes = [ClassModel]()
     var teachers = [TeacherModel]()
     
+    var onClassSelected: ((model: ClassModel) -> ())?
+    var onTeacherSelected: ((model: TeacherModel) -> ())?
+    
     override func loadView() {
         super.loadView()
         loadData()
@@ -58,9 +61,12 @@ class ChoosingController: UITableViewController, UITableViewDataSource, UITableV
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        Preferences.teacherMode = segmentedControl.selectedSegmentIndex == 1
-        Preferences.id = segmentedControl.selectedSegmentIndex == 0 ? classes[indexPath.row].id : teachers[indexPath.row].id
-        navigationController?.pushViewController(MainController(), animated: true)
+        if(segmentedControl.selectedSegmentIndex == 0) {
+            onClassSelected?(model: classes[indexPath.row])
+        } else {
+            onTeacherSelected?(model: teachers[indexPath.row])
+        }
+        navigationController?.popViewControllerAnimated(true)
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

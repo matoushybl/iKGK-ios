@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2203B4991AFB51810010097C /* SubstitutionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2203B4981AFB51810010097C /* SubstitutionController.swift */; };
+		2203B49B1AFB70370010097C /* TimetableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2203B49A1AFB70370010097C /* TimetableController.swift */; };
 		223A8B7E1AE1773B0045701B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223A8B7D1AE1773B0045701B /* AppDelegate.swift */; };
 		223A8B851AE1773B0045701B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 223A8B841AE1773B0045701B /* Images.xcassets */; };
 		223A8B881AE1773B0045701B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 223A8B861AE1773B0045701B /* LaunchScreen.xib */; };
@@ -40,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2203B4981AFB51810010097C /* SubstitutionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubstitutionController.swift; sourceTree = "<group>"; };
+		2203B49A1AFB70370010097C /* TimetableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableController.swift; sourceTree = "<group>"; };
 		223A8B781AE1773B0045701B /* iKGK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iKGK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		223A8B7C1AE1773B0045701B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		223A8B7D1AE1773B0045701B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -156,6 +160,8 @@
 				223A8BA91AE2B9790045701B /* WebViewController.swift */,
 				22D02C6F1AE410B00051E008 /* LoadingController.swift */,
 				22D02C781AE42F560051E008 /* ChoosingController.swift */,
+				2203B4981AFB51810010097C /* SubstitutionController.swift */,
+				2203B49A1AFB70370010097C /* TimetableController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -370,9 +376,11 @@
 				223A8BA61AE1912B0045701B /* CompositeView.swift in Sources */,
 				223A8BA01AE17A380045701B /* MainController.swift in Sources */,
 				22D02C7D1AE577530051E008 /* Preferences.swift in Sources */,
+				2203B4991AFB51810010097C /* SubstitutionController.swift in Sources */,
 				223A8B7E1AE1773B0045701B /* AppDelegate.swift in Sources */,
 				223A8BAA1AE2B9790045701B /* WebViewController.swift in Sources */,
 				223A8BA31AE190670045701B /* MainButton.swift in Sources */,
+				2203B49B1AFB70370010097C /* TimetableController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

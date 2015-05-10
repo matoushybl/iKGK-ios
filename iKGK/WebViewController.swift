@@ -7,11 +7,11 @@
 //
 
 import UIKit
-import UIWebViewAuthentication
+import WebKit
 
-class WebViewController: UIViewController, UIWebViewDelegate {
+class WebViewController: UIViewController  {
     
-    var webView: UWAWebView!
+    var webView: WKWebView!
     var activityIndicator: UIActivityIndicatorView!
     
     var url: String!
@@ -20,15 +20,28 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         super.loadView()
         view = UIView()
         
-        webView = CompositeView<UWAWebView>.addInto(view)
+        webView = CompositeView<WKWebView>.addInto(view)
         activityIndicator = CompositeView<UIActivityIndicatorView>.addInto(view)
         activityIndicator.activityIndicatorViewStyle = .Gray
         activityIndicator.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8)
         
-        webView.scalesPageToFit = true
-        webView.delegate = self
-        webView.loadRequest(NSURLRequest(URL: NSURL(string: url!)!))
+        loadUrl(url)
         addViewConstraints()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if(showsSettings()) {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "action_settings"), style: .Plain, target: self, action: "openSettings")
+        }
+    }
+    
+    func showsSettings() -> Bool {
+        return false
+    }
+    
+    func openSettings() {
+        // To be overriden
     }
     
     func addViewConstraints() {
@@ -40,18 +53,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        activityIndicator.startAnimating()
-        return true
-    }
-    
-    func webViewDidFinishLoad(webView: UIWebView) {
-        activityIndicator.stopAnimating()
-    }
-    
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
-        activityIndicator.stopAnimating()
-        let alertController = UIAlertController(title: "Error", message: "Failed to load page.", preferredStyle: UIAlertControllerStyle.Alert)
-        presentViewController(alertController, animated: true, completion: nil)
+    func loadUrl(url: String) {
+        webView.loadRequest(NSURLRequest(URL: NSURL(string: url)!))
     }
 }
