@@ -19,10 +19,11 @@ class SubstitutionController: WebViewController {
             })
             alertController.addAction(action)
         }
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         presentViewController(alertController, animated: true, completion: nil)
     }
     
     override func showsSettings() -> Bool {
-        return true
+        return !UrlProvider.shouldDisplayNextSubstitution()
     }
 }

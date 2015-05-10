@@ -30,6 +30,7 @@ class TimetableController: WebViewController {
             }
             self.navigationController?.pushViewController(choosingController, animated: true)
         }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         presentViewController(alertController, animated: true, completion: nil)
     }
 }
