@@ -2,7 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Image.png"
+      "scale" : "2x",
+      "filename" : "Image@2x.png"
     }
   ],
   "info" : {
