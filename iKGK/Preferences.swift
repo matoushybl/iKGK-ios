@@ -8,6 +8,7 @@
 
 import Foundation
 
+// FIXME use preferences from SwiftKit
 class Preferences {
     
     private static let TEACHER_MODE = "teacherMode"

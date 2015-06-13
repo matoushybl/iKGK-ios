@@ -8,11 +8,12 @@
 
 import UIKit
 import WebKit
+import SwiftKit
 
 class WebViewController: UIViewController, WKNavigationDelegate {
     
-    var webView: WKWebView!
-    var activityIndicator: UIActivityIndicatorView!
+    private var webView: WKWebView!
+    private var activityIndicator: UIActivityIndicatorView!
     
     var url: String!
     
@@ -20,9 +21,10 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         super.loadView()
         view = UIView()
         
-        webView = CompositeView<WKWebView>.addInto(view)
+        webView => view
         webView.navigationDelegate = self
-        activityIndicator = CompositeView<UIActivityIndicatorView>.addInto(view)
+        
+        activityIndicator => view
         activityIndicator.activityIndicatorViewStyle = .Gray
         activityIndicator.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8)
         
@@ -45,7 +47,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         // To be overriden
     }
     
-    func addViewConstraints() {
+    private func addViewConstraints() {
         webView.snp_remakeConstraints { make in
             make.edges.equalTo(view)
         }
@@ -54,7 +56,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         }
     }
     
-    func loadUrl(url: String) {
+    internal func loadUrl(url: String) {
         webView.loadRequest(NSURLRequest(URL: NSURL(string: url)!))
     }
     

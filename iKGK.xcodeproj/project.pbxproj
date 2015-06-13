@@ -16,7 +16,6 @@
 		223A8B9E1AE17A000045701B /* stylesheet.cas in Resources */ = {isa = PBXBuildFile; fileRef = 223A8B9D1AE17A000045701B /* stylesheet.cas */; };
 		223A8BA01AE17A380045701B /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223A8B9F1AE17A380045701B /* MainController.swift */; };
 		223A8BA31AE190670045701B /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223A8BA21AE190670045701B /* MainButton.swift */; };
-		223A8BA61AE1912B0045701B /* CompositeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223A8BA51AE1912B0045701B /* CompositeView.swift */; };
 		223A8BA81AE195460045701B /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 223A8BA71AE195460045701B /* Podfile */; };
 		223A8BAA1AE2B9790045701B /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223A8BA91AE2B9790045701B /* WebViewController.swift */; };
 		223A8BAC1AE3BFD90045701B /* UrlProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223A8BAB1AE3BFD90045701B /* UrlProvider.swift */; };
@@ -55,7 +54,6 @@
 		223A8B9D1AE17A000045701B /* stylesheet.cas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stylesheet.cas; sourceTree = "<group>"; };
 		223A8B9F1AE17A380045701B /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		223A8BA21AE190670045701B /* MainButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
-		223A8BA51AE1912B0045701B /* CompositeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CompositeView.swift; path = "../../o3-meeting-assistant-ios/o3-meeting-assistant-ios/Utils/CompositeView.swift"; sourceTree = "<group>"; };
 		223A8BA71AE195460045701B /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		223A8BA91AE2B9790045701B /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		223A8BAB1AE3BFD90045701B /* UrlProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlProvider.swift; sourceTree = "<group>"; };
@@ -169,7 +167,6 @@
 		223A8BA41AE190E80045701B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				223A8BA51AE1912B0045701B /* CompositeView.swift */,
 				223A8BA21AE190670045701B /* MainButton.swift */,
 				22D02C7A1AE558E70051E008 /* ChooserTableCell.swift */,
 			);
@@ -373,7 +370,6 @@
 				22D02C701AE410B00051E008 /* LoadingController.swift in Sources */,
 				22BA15921AEC349C00632E90 /* DataDownloader.swift in Sources */,
 				22D02C721AE4195C0051E008 /* ClassModel.swift in Sources */,
-				223A8BA61AE1912B0045701B /* CompositeView.swift in Sources */,
 				223A8BA01AE17A380045701B /* MainController.swift in Sources */,
 				22D02C7D1AE577530051E008 /* Preferences.swift in Sources */,
 				2203B4991AFB51810010097C /* SubstitutionController.swift in Sources */,

@@ -7,14 +7,15 @@
 //
 
 import UIKit
+import SwiftKit
 
 @objc(MainButton)
 class MainButton: UIView {
     
-    let imageView = UIImageView()
-    let label = UILabel()
-    let overlayButton = UIButton()
-    let separator = UIView()
+    private var imageView: UIImageView!
+    private var label: UILabel!
+    private var overlayButton: UIButton!
+    private var separator: UIView!
     
     var title: String! {
         didSet {
@@ -22,11 +23,12 @@ class MainButton: UIView {
         }
     }
     
-    var onClick: (() -> ())?
+    var onClick: Event<UIControl, UIEvent> {
+        return overlayButton.touchUpInside
+    }
     
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setupViews()
+    required convenience init(coder aDecoder: NSCoder) {
+        self.init(frame: CGRectZero)
     }
     
     override init(frame: CGRect) {
@@ -34,19 +36,20 @@ class MainButton: UIView {
         setupViews()
     }
     
-    func setupViews() {
-        addSubview(imageView)
-        addSubview(label)
-        addSubview(separator)
-        addSubview(overlayButton)
+    private func setupViews() {
+        imageView => self
+        label => self
+        separator => self
+        overlayButton => self
         
+        // Wow. very name. such originality
         imageView.image = UIImage(named: "Image")
-        overlayButton.addTarget(self, action: "onClicked", forControlEvents: .TouchUpInside)
         
-        addConstraints()
+        setNeedsUpdateConstraints()
     }
     
-    func addConstraints() {
+    override func updateConstraints() {
+        super.updateConstraints()
         label.snp_remakeConstraints { make in
             make.height.equalTo(self)
             make.leading.equalTo(self).offset(20)
@@ -66,9 +69,5 @@ class MainButton: UIView {
             make.leading.trailing.equalTo(self)
             make.height.equalTo(1)
         }
-    }
-    
-    func onClicked() {
-        onClick?()
     }
 }

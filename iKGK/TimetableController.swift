@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftKit
 
 class TimetableController: WebViewController {
     
@@ -22,11 +23,11 @@ class TimetableController: WebViewController {
         }))
         alertController.addAction(UIAlertAction(title: "Other timetable", style: .Default, handler: { handler in
             let choosingController = ChoosingController()
-            choosingController.onClassSelected = { classModel in
-                self.loadUrl(UrlProvider.getTimetableUrlForId(classModel.id, teacher: false))
+            choosingController.onClassSelected += { [unowned self] data in
+                self.loadUrl(UrlProvider.getTimetableUrlForId(data.input.id, teacher: false))
             }
-            choosingController.onTeacherSelected = { teacher in
-                self.loadUrl(UrlProvider.getTimetableUrlForId(teacher.id, teacher: true))
+            choosingController.onTeacherSelected += { [unowned self] data in
+                self.loadUrl(UrlProvider.getTimetableUrlForId(data.input.id, teacher: true))
             }
             self.navigationController?.pushViewController(choosingController, animated: true)
         }))

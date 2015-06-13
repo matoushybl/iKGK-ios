@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import SwiftKit
 
 class ChooserTableCell: UITableViewCell {
     
-    let label = UILabel()
-    let arrow = UIImageView()
+    private var label: UILabel!
+    private var arrow: UIImageView!
     
     var title: String! {
         didSet {
@@ -19,9 +20,8 @@ class ChooserTableCell: UITableViewCell {
         }
     }
     
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setupViews()
+    required convenience init(coder aDecoder: NSCoder) {
+        self.init(frame: CGRectZero)
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -30,9 +30,17 @@ class ChooserTableCell: UITableViewCell {
     }
     
     func setupViews() {
-        addSubview(arrow)
-        addSubview(label)
+        arrow => self
+        label => self
+        
         arrow.image = UIImage(named: "Image")
+        
+        setNeedsUpdateConstraints()
+    }
+    
+    override func updateConstraints() {
+        super.updateConstraints()
+        
         label.snp_remakeConstraints { make in
             make.height.equalTo(self)
             make.leading.equalTo(self).offset(20)

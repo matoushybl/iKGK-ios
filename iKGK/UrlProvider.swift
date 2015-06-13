@@ -64,6 +64,7 @@ class UrlProvider {
     }
     
     class func getNextSubstitutionDateString() -> String {
+        // FIXME add skipping of weekend
         let tomorrow = moment().add(1, TimeUnit.Days)
         return tomorrow.format(dateFormat: "yyyy-MM-d")
     }

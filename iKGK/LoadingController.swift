@@ -10,20 +10,22 @@ import UIKit
 import AFNetworking
 import Realm
 import SwiftyJSON
+import SwiftKit
 
 @objc(LoadingController)
 class LoadingController: UIViewController {
     
-    var activityIndicator: UIActivityIndicatorView!
-    var label: UILabel!
+    private var activityIndicator: UIActivityIndicatorView!
+    private var label: UILabel!
     
     override func loadView() {
         super.loadView()
+        
         view = UIView()
         AFNetworkReachabilityManager.sharedManager().startMonitoring()
         
-        activityIndicator = CompositeView<UIActivityIndicatorView>.addInto(view)
-        label = CompositeView<UILabel>.addInto(view)
+        activityIndicator => view
+        label => view
         label.text = "Loading classes and teachers"
         label.textColor = UIColor.whiteColor()
         
@@ -44,15 +46,15 @@ class LoadingController: UIViewController {
         activityIndicator.startAnimating()
         DataDownloader.loadData({
             let choosingController = ChoosingController()
-            choosingController.onClassSelected = { model in
+            choosingController.onClassSelected += { [unowned self] data in
                 Preferences.teacherMode = false
-                Preferences.id = model.id
+                Preferences.id = data.input.id
                 self.showMainController()
             
             }
-            choosingController.onTeacherSelected = { model in
+            choosingController.onTeacherSelected += { [unowned self] data in
                 Preferences.teacherMode = true
-                Preferences.id = model.id
+                Preferences.id = data.input.id
                 self.showMainController()
             }
             
@@ -62,15 +64,15 @@ class LoadingController: UIViewController {
     }
     
     // FIXME let's hope this shit works
-    func isNetworkAvailable() -> Bool {
+    private func isNetworkAvailable() -> Bool {
         return AFNetworkReachabilityManager.sharedManager().reachable
     }
     
-    func showError(message: String) {
+    private func showError(message: String) {
         UIAlertView(title: "Error", message: message, delegate: nil, cancelButtonTitle: "Cancel").show()
     }
     
-    func showMainController() {
+    private func showMainController() {
         let navigationController = UINavigationController(rootViewController: MainController())
         navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         self.presentViewController(navigationController, animated: true, completion: nil)

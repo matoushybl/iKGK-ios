@@ -8,22 +8,25 @@
 
 import UIKit
 import Realm
+import SwiftKit
 
 class ChoosingController: UITableViewController, UITableViewDataSource, UITableViewDelegate {
     
-    let realm = RLMRealm.defaultRealm()
-    let segmentedControl = UISegmentedControl(items: ["Classes", "Teachers"])
-    let cellIdentifier = "Cell"
+    private let realm = RLMRealm.defaultRealm()
+    private let segmentedControl = UISegmentedControl(items: ["Classes", "Teachers"])
+    private let cellIdentifier = "Cell"
     
-    var classes = [ClassModel]()
-    var teachers = [TeacherModel]()
+    var classes: [ClassModel] = []
+    var teachers: [TeacherModel] = []
     
-    var onClassSelected: ((model: ClassModel) -> ())?
-    var onTeacherSelected: ((model: TeacherModel) -> ())?
+    let onClassSelected = Event<ChoosingController, ClassModel>()
+    let onTeacherSelected = Event<ChoosingController, TeacherModel>()
     
     override func loadView() {
         super.loadView()
+        
         loadData()
+        
         tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
@@ -31,23 +34,21 @@ class ChoosingController: UITableViewController, UITableViewDataSource, UITableV
         
         segmentedControl.tintColor = UIColor.whiteColor()
         segmentedControl.selectedSegmentIndex = 0
-        segmentedControl.addTarget(self, action: "segmentedControlChanged", forControlEvents: .ValueChanged)
+        segmentedControl.valueChanged += { [unowned self] data in
+            self.tableView.reloadData()
+        }
         
         navigationItem.titleView = segmentedControl
         navigationItem.hidesBackButton = true
     }
     
-    func loadData() {
+    private func loadData() {
         for aClass in ClassModel.allObjects() {
             classes.append(aClass as! ClassModel)
         }
         for teacher in TeacherModel.allObjects() {
             teachers.append(teacher as! TeacherModel)
         }
-    }
-    
-    func segmentedControlChanged() {
-        tableView.reloadData()
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -62,9 +63,9 @@ class ChoosingController: UITableViewController, UITableViewDataSource, UITableV
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if(segmentedControl.selectedSegmentIndex == 0) {
-            onClassSelected?(model: classes[indexPath.row])
+            onClassSelected.fire(self, input: classes[indexPath.row])
         } else {
-            onTeacherSelected?(model: teachers[indexPath.row])
+            onTeacherSelected.fire(self, input: teachers[indexPath.row])
         }
         navigationController?.popViewControllerAnimated(true)
     }

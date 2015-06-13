@@ -7,66 +7,79 @@
 //
 
 import UIKit
+import SwiftKit
 
 @objc(MainController)
 class MainController: UIViewController {
     
-    var marksButton: MainButton!
-    var substitutionButton: MainButton!
-    var timetableButton: MainButton!
-    var moodleButton: MainButton!
-    var canteenButton: MainButton!
-    var websiteButton: MainButton!
+    private var marksButton: MainButton!
+    private var substitutionButton: MainButton!
+    private var timetableButton: MainButton!
+    private var moodleButton: MainButton!
+    private var canteenButton: MainButton!
+    private var websiteButton: MainButton!
     
     
     override func loadView() {
         super.loadView()
+        
         view = UIView()
         
-        marksButton = CompositeView<MainButton>.addInto(view)
-        substitutionButton = CompositeView<MainButton>.addInto(view)
-        timetableButton = CompositeView<MainButton>.addInto(view)
-        moodleButton = CompositeView<MainButton>.addInto(view)
-        canteenButton = CompositeView<MainButton>.addInto(view)
-        websiteButton = CompositeView<MainButton>.addInto(view)
-        
-        navigationItem.title = "iKGK"
-        navigationItem.hidesBackButton = true
-        setupViews()
-        DataDownloader.loadData(nil, onError: nil)
-    }
-    
-    func setupViews() {
+        marksButton => view
         marksButton.title = "Marks"
-        marksButton.onClick = {
+        marksButton.onClick += { [unowned self] _ in
             self.openController(WebViewController(), url: UrlProvider.MARKS, title: "Marks")
         }
+        
+        substitutionButton => view
         substitutionButton.title = "Substitution"
-        substitutionButton.onClick = {
+        substitutionButton.onClick += { [unowned self] _ in
             self.openController(SubstitutionController(), url: UrlProvider.getSubstitutionUrl(), title: "Substitution")
         }
+        
+        timetableButton => view
         timetableButton.title = "Timetable"
-        timetableButton.onClick = {
+        timetableButton.onClick += { [unowned self] _ in
             self.openController(TimetableController(), url: UrlProvider.getTimetableUrl(), title: "Timetable")
         }
+        
+        moodleButton => view
         moodleButton.title = "Moodle"
-        moodleButton.onClick = {
+        moodleButton.onClick += { [unowned self] _ in
             self.openController(WebViewController(), url: UrlProvider.MOODLE, title: "Moodle")
         }
+        
+        canteenButton => view
         canteenButton.title = "Canteen"
-        canteenButton.onClick = {
+        canteenButton.onClick += { [unowned self] _ in
             // FIXME not a good way
             //UIApplication.sharedApplication().openURL(NSURL(string: UrlProvider.CANTEEN)!)
             self.openController(WebViewController(), url: UrlProvider.CANTEEN, title: "Canteen")
         }
+        
+        websiteButton => view
         websiteButton.title = "Website"
-        websiteButton.onClick = {
+        websiteButton.onClick += { [unowned self] _ in
             self.openController(WebViewController(), url: UrlProvider.WEBSITE, title: "Website")
         }
+        
         addConstraints()
     }
     
-    func addConstraints() {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        DataDownloader.loadData(nil, onError: nil)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationItem.title = "iKGK"
+        navigationItem.hidesBackButton = true
+    }
+    
+    private func addConstraints() {
         marksButton.snp_remakeConstraints { make in
             make.leading.trailing.equalTo(self.view)
             make.top.equalTo(self.view)
@@ -99,7 +112,7 @@ class MainController: UIViewController {
         }
     }
     
-    func openController(controller: WebViewController, url: String, title: String) {
+    private func openController(controller: WebViewController, url: String, title: String) {
         controller.navigationItem.title = title
         controller.url = url
         navigationController?.pushViewController(controller, animated: true)
